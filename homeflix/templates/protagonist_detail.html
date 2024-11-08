@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ protagonist.protagonist }} - HomeFlix{% endblock %}
+
+{% block content %}
+<div class="protagonist-detail-container">
+    <div class="protagonist-header">
+        <h1 style="text-align: center;">{{ protagonist.name }}</h1>
+        <div class="protagonist-info">
+            
+            <img src="{{ protagonist.image.url  }}"
+                 alt="{{ protagonist.protagonist }}"
+                 class="protagonist-detail-image">
+            <h1>{{ protagonist.protagonist }}</h1>
+        </div>
+    </div>
+
+    <div class="protagonist-movies">
+        <h2>Filmes com {{ protagonist.protagonist }}</h2>
+        <div class="movies-grid">
+            {% for movie in movies %}
+            <a href="{% url 'movie_detail' movie.id %}" class="movie-card">
+                <div class="movie-thumbnail">
+                    <video preload="metadata">
+                        <source src="{{ movie.movie_file.url }}" type="video/mp4">
+                    </video>
+                    <div class="play-overlay">
+                        <span class="play-icon">▶</span>
+                    </div>
+                </div>
+                <div class="movie-info">
+                    <h3 class="movie-title">{{ movie.title }}</h3>
+                    {% if movie.description %}
+                    <p class="movie-description">{{ movie.description|truncatewords:20 }}</p>
+                    {% endif %}
+                    <p class="movie-date">{{ movie.upload_date|date:"d/m/Y" }}</p>
+                </div>
+            </a>
+            {% empty %}
+            <p class="empty-state">Nenhum filme encontrado para este protagonista.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

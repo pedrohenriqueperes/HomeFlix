@@ -19,7 +19,7 @@
                 </div>
                 <div class="movie-info">
                     <h3 class="movie-title">{{ movie.title }}</h3>
-                    <p class="movie-protagonist">{{ movie.protagonist }}</p>
+                    <p class="movie-protagonist">{{ movie.protagonist.name }}</p>
                     {% if movie.description %}
                     <p class="movie-description">{{ movie.description|truncatewords:20 }}</p>
                     {% endif %}
@@ -34,19 +34,22 @@
 
     <aside>
         <h2>Protagonistas</h2>
-            <div class="protagonist-section">
-              {% for p in protagonists %}
-               <div class="protagonist-card">
-                <img src="/media/{{ p.protagonist_image }}"
-                     alt="{{ p.protagonist }}"
-                     class="protagonist-image">
-                <p class="protagonist-name">{{ p.protagonist }}</p>
-            </div>
-        {% empty %}
+        <div class="protagonist-section">
+            {% for protagonist in protagonists %}
+            <a href="{% url 'protagonist_detail' protagonist_name=protagonist.name %}">
+                <div class="protagonist-card">
+                    {% if protagonist.image %}
+                    <img src="{{ protagonist.image.url }}"
+                         alt="{{ protagonist.name }}"
+                         class="protagonist-image">
+                    {% endif %}
+                    <p class="protagonist-name">{{ protagonist.name }}</p>
+                </div>
+            </a>
+            {% empty %}
             <p>Nenhum protagonista com foto cadastrado.</p>
-        {% endfor %}
-    </div>
-</aside>
-
+            {% endfor %}
+        </div>
+    </aside>
 </div>
 {% endblock %}

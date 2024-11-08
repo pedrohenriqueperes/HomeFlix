@@ -304,6 +304,74 @@ h1, h2 {
     padding: 40px;
     color: #666;
 }
+/* Estilos para a página de detalhes do protagonista */
+.protagonist-detail-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.protagonist-header {
+    background-color: #2f2f2f;
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.protagonist-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.protagonist-detail-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #e50914;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.protagonist-info h1 {
+    font-size: 2.5em;
+    margin: 0;
+    color: #fff;
+}
+
+.protagonist-movies {
+    margin-top: 30px;
+}
+
+.protagonist-movies h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #e50914;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .protagonist-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .protagonist-detail-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .protagonist-info h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .protagonist-header {
+        padding: 20px;
+    }
+}
 
 /* Responsividade */
 @media (max-width: 1200px) {
@@ -340,3 +408,5 @@ h1, h2 {
     .nav-links {
         width: 100%;
         justify-c
+
+
