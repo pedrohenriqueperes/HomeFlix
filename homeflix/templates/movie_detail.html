@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ movie.title }} - HomeFlix{% endblock %}
+
+{% block content %}
+<div class="movie-detail-container">
+    <div class="video-player-container">
+        <video controls autoplay class="main-video">
+            <source src="{{ movie.movie_file.url }}" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+    </div>
+
+    <div class="movie-detail-info">
+        <h1>{{ movie.title }}</h1>
+        <div class="movie-meta">
+            <p class="protagonist-name">Protagonista: {{ movie.protagonist }}</p>
+            <p class="upload-date">Adicionado em: {{ movie.upload_date|date:"d/m/Y" }}</p>
+        </div>
+        {% if movie.description %}
+        <div class="movie-description">
+            <h2>Descrição</h2>
+            <p>{{ movie.description }}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

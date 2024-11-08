@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}HomeFlix - Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <main class="movies-container">
+        <h1>Filmes Disponíveis</h1>
+        <div class="movies-grid">
+            {% for movie in movies %}
+            <a href="{% url 'movie_detail' movie.id %}" class="movie-card">
+                <div class="movie-thumbnail">
+                    <video preload="metadata">
+                        <source src="{{ movie.movie_file.url }}" type="video/mp4">
+                    </video>
+                    <div class="play-overlay">
+                        <span class="play-icon">▶</span>
+                    </div>
+                </div>
+                <div class="movie-info">
+                    <h3 class="movie-title">{{ movie.title }}</h3>
+                    <p class="movie-protagonist">{{ movie.protagonist }}</p>
+                    {% if movie.description %}
+                    <p class="movie-description">{{ movie.description|truncatewords:20 }}</p>
+                    {% endif %}
+                    <p class="movie-date">{{ movie.upload_date|date:"d/m/Y" }}</p>
+                </div>
+            </a>
+            {% empty %}
+            <p>Nenhum filme cadastrado ainda.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <aside>
+        <h2>Protagonistas</h2>
+            <div class="protagonist-section">
+              {% for p in protagonists %}
+               <div class="protagonist-card">
+                <img src="/media/{{ p.protagonist_image }}"
+                     alt="{{ p.protagonist }}"
+                     class="protagonist-image">
+                <p class="protagonist-name">{{ p.protagonist }}</p>
+            </div>
+        {% empty %}
+            <p>Nenhum protagonista com foto cadastrado.</p>
+        {% endfor %}
+    </div>
+</aside>
+
+</div>
+{% endblock %}
